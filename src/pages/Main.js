@@ -1,31 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiOutlinePlus } from 'react-icons/ai';
+import * as XLSX from 'xlsx';
+import { useDispatch } from 'react-redux';
+import { createData } from '../redux/modules/tcData';
+
+import DataResult from '../components/DataResult';
 
 export default function Main() {
-  const testArr = [
-    { title: '원티드페이지' },
-    { title: '원티드프리랜서' },
-    { title: '원티드AI' },
-  ];
+  const dispatch = useDispatch();
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+
+    var files = e.target.files,
+      f = files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var data = e.target.result;
+      let readedData = XLSX.read(data, { type: 'binary' });
+
+      readedData.SheetNames.forEach((value, index) => {
+        const SheetName = readedData.SheetNames[index];
+        const ws = readedData.Sheets[SheetName];
+
+        const dataParse = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        const filterData = dataParse.filter((v) => v.length > 0);
+        dispatch(createData({ filterData }));
+      });
+    };
+    reader.readAsBinaryString(f);
+  };
 
   return (
     <MainWrap>
       <PageTitle>TestCase 결과 분석기</PageTitle>
-      <ProjectList>
-        {testArr.map(({ title }) => (
-          <ProjectItem key={title}>
-            <ProjectButton></ProjectButton>
-            <ProjectTitle>{title}</ProjectTitle>
-          </ProjectItem>
-        ))}
-      </ProjectList>
-
-      <ButtonPos>
-        <AddButton>
-          <AiOutlinePlus />
-        </AddButton>
-      </ButtonPos>
+      <InputElsx type="file" onChange={handleUpload} />
+      <DataResult />
     </MainWrap>
   );
 }
@@ -39,36 +49,8 @@ const PageTitle = styled.h1`
   margin-bottom: 50px;
 `;
 
-const AddButton = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background-color: #eee;
-  font-size: 25px;
-  line-height: 25px;
-`;
-
-const ButtonPos = styled.div`
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-`;
-
-const ProjectList = styled.ul`
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-`;
-
-const ProjectItem = styled.li``;
-
-const ProjectButton = styled.button`
-  width: 250px;
-  height: 250px;
-  border-radius: 20px;
-  background-color: #eee;
-`;
-
-const ProjectTitle = styled.p`
-  font-size: 25px;
+const InputElsx = styled.input`
+  position: relative;
+  top: 50%;
+  left: 50%;
 `;

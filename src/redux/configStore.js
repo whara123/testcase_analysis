@@ -1,5 +1,6 @@
-// import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import tcData from './modules/tcData';
 
-// const rootReducer = combineReducers({});
-// const store = createStore(rootReducer);
-// export default store;
+const rootReducer = combineReducers({ tcData });
+const store = createStore(rootReducer);
+export default store;
