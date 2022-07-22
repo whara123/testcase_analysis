@@ -25,12 +25,44 @@ export default function Main() {
 
         const dataParse = XLSX.utils.sheet_to_json(ws, { header: 1 });
         const filterData = dataParse.filter((v) => v.length > 0);
-        dispatch(createData({ filterData }));
+        dataRefine(filterData);
       });
     };
     reader.readAsBinaryString(f);
   };
 
+  const dataRefine = (data) => {
+    data.map((v, i) => {
+      if (!v[5]) {
+        while (!data[i][5]) {
+          i--;
+        }
+        v[5] = data[i][5];
+      }
+
+      if (!v[1]) {
+        while (!data[i][1]) {
+          i--;
+        }
+        v[1] = data[i][1];
+      }
+
+      if (!v[2]) {
+        while (!data[i][2]) {
+          i--;
+        }
+        v[2] = data[i][2];
+      }
+
+      if (!v[3]) {
+        while (!data[i][3]) {
+          i--;
+        }
+        v[3] = data[i][3];
+      }
+    });
+    dispatch(createData({ data }));
+  };
   return (
     <MainWrap>
       <PageTitle>TestCase 결과 분석기</PageTitle>
