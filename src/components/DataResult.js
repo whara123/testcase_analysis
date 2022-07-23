@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 export default function DataResult() {
   const resultData = useSelector((state) => state.tcData.data);
+  const selectResult = useSelector((state) => state.selectResult);
+  console.log(selectResult);
 
   const issueData = resultData?.filter((v) => v.length - 1 > 7);
   const bugData = issueData?.filter((v) => v[8].includes('#'));
@@ -32,13 +34,15 @@ export default function DataResult() {
             <ul>
               {etcData.map(
                 (v, i) =>
-                  i > 0 && (
+                  i > 0 &&
+                  selectResult == v[7] && (
                     <li key={v}>
                       <p>비고내용 : {v[8]}</p>
                       <p>
                         메인카테고리 : {v[1]} 서브카테고리 : {v[2]}{' '}
                         디테일카테고리 :{v[3]} 검증스탭 : {v[5]} 예상결과 :{' '}
                         {v[6]}
+                        {v[7]}
                       </p>
                     </li>
                   ),

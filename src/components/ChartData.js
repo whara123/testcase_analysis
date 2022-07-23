@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { createResult } from '../redux/modules/selectResult';
 
 import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
 export default function ChartData() {
+  const dispatch = useDispatch();
+
   Chart.register(CategoryScale);
   const resultData = useSelector((state) => state.tcData.data);
   const sheetName = useSelector((state) => state.tcSheetName);
@@ -36,7 +39,7 @@ export default function ChartData() {
       let dataIndex = activeEls[0].index;
 
       let label = e.chart.data.labels[dataIndex];
-      console.log(label);
+      dispatch(createResult(label));
     },
   };
 

@@ -25,6 +25,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `minor`,
     },
     {
       issueNum: '#123433',
@@ -45,6 +46,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#123434',
@@ -65,6 +67,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `major`,
     },
     {
       issueNum: '#123435',
@@ -85,6 +88,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#232492',
@@ -105,6 +109,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `major`,
     },
     {
       issueNum: '#232493',
@@ -125,106 +130,110 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#232494',
       issueTitle: '옵션에서 C버튼이 보이지 않는 문제',
       issueContent: `
       [현재문제]
-      상단 UI의 조사 본부 이동목록의 버튼 테두리가 제대로 점멸하지 않는 문제입니다. 
-      기획서 상 버튼 테두리가 느리게 점멸되어야 하지만 현재 버전에서 점멸이 작동하고 있지 않습니다. 약 1분 대기하였으며 기획서 상의 점멸 간격은 10초입니다.
+      옵션UI에서 조건 완료 후 노출되어야 하는 C버튼이 보이지 않는 문제입니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 상단 UI > 조사 본부 > 이동목록 확인 > 버튼 테두리 점멸 확인 > 문제 발생
+      로비 이동 > 하단 UI > 옵션 > C버튼 확인 > 문제 발생
       `,
       issueResult: `
       [기대결과]
-      버튼의 점멸 효과가 10초 간격으로 발생되어야 합니다.
+      조건 달성 시 옵션에서 C버튼이 노출되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#232495',
       issueTitle: '메뉴에서 옵션버튼이 비활성화 되는 문제',
       issueContent: `
       [현재문제]
-      상단 UI의 조사 본부 이동목록의 버튼 테두리가 제대로 점멸하지 않는 문제입니다. 
-      기획서 상 버튼 테두리가 느리게 점멸되어야 하지만 현재 버전에서 점멸이 작동하고 있지 않습니다. 약 1분 대기하였으며 기획서 상의 점멸 간격은 10초입니다.
+      옵션 UI가 활성화되지 않는 문제입니다.
+      현재 버젼에서 옵션버튼이 비활성화 상태가 되어 눌리지 않고 있습니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 상단 UI > 조사 본부 > 이동목록 확인 > 버튼 테두리 점멸 확인 > 문제 발생
+      로비 이동 > 하단 UI > 옵션 > 활성화 확인 > 문제 발생
       `,
       issueResult: `
       [기대결과]
-      버튼의 점멸 효과가 10초 간격으로 발생되어야 합니다.
+      옵션버튼이 활성화되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `major`,
     },
     {
       issueNum: '#232496',
       issueTitle: '기록보기 화살표가 보이지 않는 문제',
       issueContent: `
       [현재문제]
-      상단 UI의 조사 본부 이동목록의 버튼 테두리가 제대로 점멸하지 않는 문제입니다. 
-      기획서 상 버튼 테두리가 느리게 점멸되어야 하지만 현재 버전에서 점멸이 작동하고 있지 않습니다. 약 1분 대기하였으며 기획서 상의 점멸 간격은 10초입니다.
+      기록보기 화살표가 노출되지 않고 있습니다.
+      조건 달성 시 기록보기에 화살표가 노출되어 유저에게 클릭을 유도한다고 명시되어 있으나 현재 화살표가 보이지 않습니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 상단 UI > 조사 본부 > 이동목록 확인 > 버튼 테두리 점멸 확인 > 문제 발생
+      로비 이동 > 하단 UI > 옵션 > 화살표 확인 > 문제 발생
       `,
       issueResult: `
       [기대결과]
-      버튼의 점멸 효과가 10초 간격으로 발생되어야 합니다.
+      기록보기 버튼에 화살표가 노출되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#232497',
       issueTitle: '기록보기에서 C버튼이 보이지 않는 문제',
       issueContent: `
       [현재문제]
-      상단 UI의 조사 본부 이동목록의 버튼 테두리가 제대로 점멸하지 않는 문제입니다. 
-      기획서 상 버튼 테두리가 느리게 점멸되어야 하지만 현재 버전에서 점멸이 작동하고 있지 않습니다. 약 1분 대기하였으며 기획서 상의 점멸 간격은 10초입니다.
+      기록보기에서 조건 완료 후 노출되어야 하는 C버튼이 보이지 않는 문제입니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 상단 UI > 조사 본부 > 이동목록 확인 > 버튼 테두리 점멸 확인 > 문제 발생
+      로비 이동 > 하단 UI > 조건달성 > 옵션 > C버튼 확인 > 문제 발생
       `,
       issueResult: `
       [기대결과]
-      버튼의 점멸 효과가 10초 간격으로 발생되어야 합니다.
+      기록보기에서 C버튼이 노출되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
     {
       issueNum: '#232498',
       issueTitle: '기록버튼이 활성화 되지않는 문제',
       issueContent: `
       [현재문제]
-      상단 UI의 조사 본부 이동목록의 버튼 테두리가 제대로 점멸하지 않는 문제입니다. 
-      기획서 상 버튼 테두리가 느리게 점멸되어야 하지만 현재 버전에서 점멸이 작동하고 있지 않습니다. 약 1분 대기하였으며 기획서 상의 점멸 간격은 10초입니다.
+      기록버튼이 활성화되지 않는 문제입니다.
+      조건 완료 후 UI 확인시 기록 버튼이 활성화 되지 않고 있습니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 상단 UI > 조사 본부 > 이동목록 확인 > 버튼 테두리 점멸 확인 > 문제 발생
+      로비 이동 > 하단 UI > 조건달성 > 기록버튼 > 활성화 확인 > 문제 발생
       `,
       issueResult: `
       [기대결과]
-      버튼의 점멸 효과가 10초 간격으로 발생되어야 합니다.
+      기록버튼이 활성화 되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
+      issueImportance: `normal`,
     },
   ];
   return (
@@ -237,6 +246,7 @@ export default function Issue() {
           issueStep,
           issueResult,
           issueVersion,
+          issueImportance,
         }) => (
           <ul key={issueNum}>
             {`#${path[2]}` === issueNum && (
@@ -248,16 +258,19 @@ export default function Issue() {
 
                 <div>
                   <div>
-                    {issueContent}
+                    <p>{issueContent}</p>
                     <br />
                     <br />
-                    {issueStep}
+                    <p>{issueStep}</p>
                     <br />
                     <br />
-                    {issueResult}
+                    <p>{issueResult}</p>
                     <br />
                     <br />
-                    {issueVersion}
+                    <p>{issueVersion}</p>
+                    <br />
+                    <br />
+                    <p>{issueImportance}</p>
                   </div>
                 </div>
               </Iist>
