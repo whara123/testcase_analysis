@@ -3,6 +3,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
+import Issue from './pages/Issue';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/issue/:id" element={<Issue />} />
         </Routes>
       </BrowserRouter>
     </>

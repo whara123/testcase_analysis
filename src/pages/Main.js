@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import * as XLSX from 'xlsx';
 import { useDispatch } from 'react-redux';
 import { createData } from '../redux/modules/tcData';
+import { createName } from '../redux/modules/tcSheetName';
 
 import DataResult from '../components/DataResult';
 
@@ -22,9 +23,9 @@ export default function Main() {
       readedData.SheetNames.forEach((value, index) => {
         const SheetName = readedData.SheetNames[index];
         const ws = readedData.Sheets[SheetName];
-
         const dataParse = XLSX.utils.sheet_to_json(ws, { header: 1 });
         const filterData = dataParse.filter((v) => v.length > 0);
+        dispatch(createName(SheetName));
         dataRefine(filterData);
       });
     };
