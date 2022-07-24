@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/issue/:id" element={<Issue />} />
+          <Route path="/issue" element={<Issue />} />
         </Routes>
       </BrowserRouter>
     </>

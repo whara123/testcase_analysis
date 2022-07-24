@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Issue() {
-  const url = window.location.pathname;
-  const path = url.split('/');
-  console.log(path[2]);
   const issuedata = [
     {
       issueNum: '#123432',
@@ -25,7 +22,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `minor`,
+      issueImportance: `Minor`,
     },
     {
       issueNum: '#123433',
@@ -46,7 +43,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#123434',
@@ -67,7 +64,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `major`,
+      issueImportance: `Major`,
     },
     {
       issueNum: '#123435',
@@ -88,7 +85,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#232492',
@@ -109,7 +106,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `major`,
+      issueImportance: `Major`,
     },
     {
       issueNum: '#232493',
@@ -130,7 +127,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#232494',
@@ -150,7 +147,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#232495',
@@ -171,7 +168,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `major`,
+      issueImportance: `Major`,
     },
     {
       issueNum: '#232496',
@@ -192,7 +189,7 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#232497',
@@ -212,28 +209,28 @@ export default function Issue() {
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Normal`,
     },
     {
       issueNum: '#232498',
-      issueTitle: '기록버튼이 활성화 되지않는 문제',
+      issueTitle: '1-3 페이지 진입 시 게임이 진행되지 않는 문제',
       issueContent: `
       [현재문제]
-      기록버튼이 활성화되지 않는 문제입니다.
-      조건 완료 후 UI 확인시 기록 버튼이 활성화 되지 않고 있습니다.
+      모험 1-3 단계에서 게임이 멈추는 문제입니다.
+      모든 기기에서 발생되었으며 1-3단계 이후 프리징이 생겨 다른 동작을 하지 않습니다.
       `,
       issueStep: `
       [재현스텝]
-      로비 이동 > 하단 UI > 조건달성 > 기록버튼 > 활성화 확인 > 문제 발생
+      모험 > 1-2까지 클리어 > 1-3 진입 > 게임 프리징 확인
       `,
       issueResult: `
       [기대결과]
-      기록버튼이 활성화 되어야 합니다.
+      1-3 진입 시 프리징 되지 않고 게임이 진행되어야 합니다.
       `,
       issueVersion: `
       [발생버전]
       1.1.0`,
-      issueImportance: `normal`,
+      issueImportance: `Critical`,
     },
   ];
   return (
@@ -249,32 +246,30 @@ export default function Issue() {
           issueImportance,
         }) => (
           <ul key={issueNum}>
-            {`#${path[2]}` === issueNum && (
-              <Iist>
-                <IistTitle>
-                  <p>{issueNum}</p>
-                  <p>{issueTitle}</p>
-                </IistTitle>
+            <Iist>
+              <IistTitle>
+                <p className="issueNumber">{issueNum}</p>
+                <p className="issueTitle">{issueTitle}</p>
+              </IistTitle>
 
+              <div>
                 <div>
-                  <div>
-                    <p>{issueContent}</p>
-                    <br />
-                    <br />
-                    <p>{issueStep}</p>
-                    <br />
-                    <br />
-                    <p>{issueResult}</p>
-                    <br />
-                    <br />
-                    <p>{issueVersion}</p>
-                    <br />
-                    <br />
-                    <p>{issueImportance}</p>
-                  </div>
+                  <p>{issueContent}</p>
+                  <br />
+                  <br />
+                  <p>{issueStep}</p>
+                  <br />
+                  <br />
+                  <p>{issueResult}</p>
+                  <br />
+                  <br />
+                  <p>{issueVersion}</p>
+                  <br />
+                  <br />
+                  <p>{issueImportance}</p>
                 </div>
-              </Iist>
-            )}
+              </div>
+            </Iist>
           </ul>
         ),
       )}

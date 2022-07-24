@@ -4,6 +4,7 @@ import * as XLSX from 'xlsx';
 import { useDispatch } from 'react-redux';
 import { createData } from '../redux/modules/tcData';
 import { createName } from '../redux/modules/tcSheetName';
+import { createBugData } from '../redux/modules/bugData';
 
 import DataResult from '../components/DataResult';
 
@@ -30,6 +31,7 @@ export default function Main() {
       });
     };
     reader.readAsBinaryString(f);
+    bugDataServer();
   };
 
   const dataRefine = (data) => {
@@ -64,10 +66,21 @@ export default function Main() {
     });
     dispatch(createData({ data }));
   };
+
+  const bugDataServer = () => {
+    fetch(`/getData`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        dispatch(createBugData(data, true));
+      });
+  };
+
   return (
     <MainWrap>
       <PageTitle>TestCase 결과 분석기</PageTitle>
-      <InputElsx type="file" onChange={handleUpload} />
+      <input type="file" onChange={handleUpload} />
       <DataResult />
     </MainWrap>
   );
@@ -80,10 +93,4 @@ const MainWrap = styled.header`
 const PageTitle = styled.h1`
   font-size: 50px;
   margin-bottom: 50px;
-`;
-
-const InputElsx = styled.input`
-  position: relative;
-  top: 50%;
-  left: 50%;
 `;
