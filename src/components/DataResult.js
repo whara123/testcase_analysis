@@ -14,7 +14,6 @@ export default function DataResult() {
 
   const importanceArr = ['All', 'Critical', 'Major', 'Normal', 'Minor'];
   const [selectImportance, setSelectImportance] = useState('All');
-  console.log(selectImportance);
 
   return (
     <div>
@@ -59,7 +58,9 @@ export default function DataResult() {
                     ),
                 )
               ) : (
-                <FadeLoader color="#000" size={100} />
+                <Loading>
+                  <FadeLoader color="#000" size={100} />
+                </Loading>
               )}
             </IssueList>
           </ResultWrap>
@@ -106,6 +107,13 @@ export default function DataResult() {
   );
 }
 
+const Loading = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
 const DataWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -136,10 +144,11 @@ const IssueItem = styled.li`
       : props.importance == 'Major'
       ? '#f0a19d'
       : props.importance == 'Normal'
-      ? '#FFF4AA'
+      ? '#FAD9A3'
       : props.importance == 'Minor'
-      ? '#eee'
+      ? '#999'
       : '#fff'};
+  color: #fff;
   font-weight: bold;
   padding: 1px 3px;
   margin-right: 4px;
