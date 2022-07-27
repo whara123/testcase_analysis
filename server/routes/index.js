@@ -11,7 +11,7 @@ app.use('/getData', async function (req, res) {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   let result;
 
-  result = await getCrawler.crawler('http://localhost:3000/issue');
+  result = await getCrawler.crawler(req.query.name);
 
   res.send(result);
 });

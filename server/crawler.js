@@ -15,7 +15,7 @@ const crawler = async (issueNum) => {
 
   let issueData = [];
 
-  let url = issueNum;
+  let url = `http://localhost:3000/issue/${issueNum}`;
   await page.goto(url);
 
   const content = await page.content();
@@ -24,15 +24,16 @@ const crawler = async (issueNum) => {
   const list = $('#root > div').children('ul');
 
   list.each((idx, node) => {
-    issueData.push({
-      issueNum: $(node).find('div > p.issueNumber').text(),
-      issueTitle: $(node).find('div > p:nth-child(2)').text(),
-      issueImportance: $(node).find('div > p:nth-child(13)').text(),
-    });
+    if ($(node).find('div > p.issueNumber').text() != '') {
+      issueData.push({
+        issueNum: $(node).find('div > p.issueNumber').text(),
+        issueTitle: $(node).find('div > p:nth-child(2)').text(),
+        issueImportance: $(node).find('div > p:nth-child(13)').text(),
+      });
+    }
   });
 
   await browser.close();
-
   return { issueData };
 };
 

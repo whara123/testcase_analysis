@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function Issue() {
+  const url = window.location.pathname;
+  const path = url.split('/');
+  console.log(path[2]);
   const issuedata = [
     {
       issueNum: '#123432',
@@ -246,30 +249,32 @@ export default function Issue() {
           issueImportance,
         }) => (
           <ul key={issueNum}>
-            <Iist>
-              <IistTitle>
-                <p className="issueNumber">{issueNum}</p>
-                <p className="issueTitle">{issueTitle}</p>
-              </IistTitle>
+            {`#${path[2]}` === issueNum && (
+              <Iist>
+                <IistTitle>
+                  <p className="issueNumber">{issueNum}</p>
+                  <p className="issueTitle">{issueTitle}</p>
+                </IistTitle>
 
-              <div>
                 <div>
-                  <p>{issueContent}</p>
-                  <br />
-                  <br />
-                  <p>{issueStep}</p>
-                  <br />
-                  <br />
-                  <p>{issueResult}</p>
-                  <br />
-                  <br />
-                  <p>{issueVersion}</p>
-                  <br />
-                  <br />
-                  <p>{issueImportance}</p>
+                  <div>
+                    <p>{issueContent}</p>
+                    <br />
+                    <br />
+                    <p>{issueStep}</p>
+                    <br />
+                    <br />
+                    <p>{issueResult}</p>
+                    <br />
+                    <br />
+                    <p>{issueVersion}</p>
+                    <br />
+                    <br />
+                    <p>{issueImportance}</p>
+                  </div>
                 </div>
-              </div>
-            </Iist>
+              </Iist>
+            )}
           </ul>
         ),
       )}

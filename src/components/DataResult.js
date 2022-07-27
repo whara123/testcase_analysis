@@ -37,25 +37,24 @@ export default function DataResult() {
               </ImportanceWrap>
 
               {isLoading ? (
-                bugData.issueData?.map(
-                  ({ issueNum, issueTitle, issueImportance }) =>
-                    issueImportance == selectImportance ? (
-                      <IssueListWrap key={issueNum}>
-                        <IssueItem importance={issueImportance}>
-                          {issueNum}
-                        </IssueItem>
-                        <div>{issueTitle}</div>
-                      </IssueListWrap>
-                    ) : selectImportance == 'All' ? (
-                      <IssueListWrap key={issueNum}>
-                        <IssueItem importance={issueImportance}>
-                          {issueNum}
-                        </IssueItem>
-                        <div>{issueTitle}</div>
-                      </IssueListWrap>
-                    ) : (
-                      <></>
-                    ),
+                bugData?.map(({ issueNum, issueTitle, issueImportance }) =>
+                  issueImportance == selectImportance ? (
+                    <IssueListWrap key={issueNum}>
+                      <IssueItem importance={issueImportance}>
+                        {issueNum}
+                      </IssueItem>
+                      <div>{issueTitle}</div>
+                    </IssueListWrap>
+                  ) : selectImportance == 'All' ? (
+                    <IssueListWrap key={issueNum}>
+                      <IssueItem importance={issueImportance}>
+                        {issueNum}
+                      </IssueItem>
+                      <div>{issueTitle}</div>
+                    </IssueListWrap>
+                  ) : (
+                    <></>
+                  ),
                 )
               ) : (
                 <Loading>

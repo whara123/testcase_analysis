@@ -4,16 +4,19 @@ import * as XLSX from 'xlsx';
 import { useDispatch } from 'react-redux';
 import { createData } from '../redux/modules/tcData';
 import { createName } from '../redux/modules/tcSheetName';
-import { createBugData } from '../redux/modules/bugData';
+import { createBugData, resetBugData } from '../redux/modules/bugData';
 
 import DataResult from '../components/DataResult';
 
 export default function Main() {
   const dispatch = useDispatch();
+  const reg = /[^\w\s]/g;
 
   const handleUpload = (e) => {
+    dispatch(createName(''));
+    dataRefine([]);
+    dispatch(resetBugData());
     e.preventDefault();
-
     var files = e.target.files,
       f = files[0];
     var reader = new FileReader();
@@ -28,10 +31,16 @@ export default function Main() {
         const filterData = dataParse.filter((v) => v.length > 0);
         dispatch(createName(SheetName));
         dataRefine(filterData);
+        const issueData = filterData?.filter((v) => v.length - 1 > 7);
+        const bugData = issueData?.filter((v) => v[8].includes('#'));
+        const number = bugData?.map((v) => v[8].replace(reg, ''));
+
+        number?.forEach((v) => {
+          bugDataServer(v);
+        });
       });
     };
     reader.readAsBinaryString(f);
-    bugDataServer();
   };
 
   const dataRefine = (data) => {
@@ -67,8 +76,8 @@ export default function Main() {
     dispatch(createData({ data }));
   };
 
-  const bugDataServer = () => {
-    fetch(`/getData`)
+  const bugDataServer = (number) => {
+    fetch(`/getData?name=${number}`)
       .then((res) => {
         return res.json();
       })
