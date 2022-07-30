@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { createResult } from '../redux/modules/selectResult';
@@ -11,15 +11,29 @@ export default function ChartData() {
   const dispatch = useDispatch();
 
   Chart.register(CategoryScale);
-  const resultData = useSelector((state) => state.tcData.data);
-  const sheetName = useSelector((state) => state.tcSheetName);
+  const resultData = useSelector((state) => state.tcData.data).filter(
+    (v) => v.length != 0,
+  );
+  let isLoading = useSelector((state) => state.bugData.isLoading);
+  const sheetName = useSelector((state) => state.tcSheetName.name).filter(
+    (v) => v.length != 0,
+  );
 
   const result = ['Pass', 'Fail', 'Not Available', 'Block', 'Not Test'];
   const color = ['#86CAF8', '#F0A19D', '#E093F0', '#F5CAA8', '#D9D9D9'];
 
-  const resultCount = result.map(
-    (value) => resultData?.filter((v) => v.includes(value)).length,
-  );
+  const resultCounter = () => {
+    resultData?.forEach((val, i) => {
+      const count = result.map(
+        (value) => resultData[i]?.filter((v) => v.includes(value)).length,
+      );
+      console.log(count);
+    });
+  };
+
+  useEffect(() => {
+    resultCounter();
+  }, [isLoading]);
 
   const data = {
     labels: result,
@@ -28,7 +42,7 @@ export default function ChartData() {
         type: 'bar',
         label: sheetName,
         backgroundColor: color,
-        data: resultCount,
+        data: 0,
         borderColor: color,
         borderWidth: 1,
       },

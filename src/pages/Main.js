@@ -35,8 +35,8 @@ export default function Main() {
         const bugData = issueData?.filter((v) => v[8].includes('#'));
         const number = bugData?.map((v) => v[8].replace(reg, ''));
 
-        number?.forEach((v) => {
-          bugDataServer(v);
+        number?.forEach((v, i) => {
+          bugDataServer(v, i, number.length);
         });
       });
     };
@@ -76,13 +76,13 @@ export default function Main() {
     dispatch(createData({ data }));
   };
 
-  const bugDataServer = (number) => {
+  const bugDataServer = (number, index, length) => {
     fetch(`/getData?name=${number}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        dispatch(createBugData(data, true));
+        dispatch(createBugData(data, index == length - 1 && true));
       });
   };
 
