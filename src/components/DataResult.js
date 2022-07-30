@@ -10,7 +10,7 @@ export default function DataResult() {
   const bugData = useSelector((state) => state.bugData.issueData);
   let isLoading = useSelector((state) => state.bugData.isLoading);
 
-  const issueData = resultData?.filter((v) => v.length - 1 > 7);
+  const issueData = resultData?.filter((v) => v[7] != 'Pass');
 
   const importanceArr = ['All', 'Critical', 'Major', 'Normal', 'Minor'];
   const [selectImportance, setSelectImportance] = useState('All');
@@ -73,7 +73,7 @@ export default function DataResult() {
                     <TableList key={v}>
                       <IssueComment>
                         <IssueResult result={`${v[7]}`}>{v[7]}</IssueResult>
-                        <div>{v[8]}</div>
+                        <div>{v[8] && v[8]}</div>
                       </IssueComment>
                       <Table>
                         <thead>
