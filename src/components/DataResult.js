@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ChartData from './ChartData';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { createSheetResultData } from '../redux/modules/sheetResultData';
 import FadeLoader from 'react-spinners/FadeLoader';
 
 export default function DataResult() {
+  const dispatch = useDispatch();
   const resultData = useSelector((state) => state.tcData.data);
+
   const selectResult = useSelector((state) => state.selectResult);
   const bugData = useSelector((state) => state.bugData.issueData);
   let isLoading = useSelector((state) => state.bugData.isLoading);
 
-  const issueData = resultData?.filter((v) => v[7] != 'Pass');
+  const selectSheet = useSelector((state) => state.selectSheet);
+
+  const issueData = resultData
+    ?.filter((v) => v.length != 0)
+    .map((value) => value.filter((v) => v[7] != 'Pass'));
+
+  const result = ['Pass', 'Fail', 'Not Available', 'Block', 'Not Test'];
+  const resultCounter = () => {
+    const resultCount = resultData?.filter((v) => v.length != 0);
+    resultCount?.map((val, i) => {
+      let count = result.map(
+        (value) => resultCount[i]?.filter((v) => v.includes(value)).length,
+      );
+      dispatch(createSheetResultData({ count }));
+    });
+  };
+
+  useEffect(() => {
+    resultCounter();
+  }, [isLoading]);
 
   const importanceArr = ['All', 'Critical', 'Major', 'Normal', 'Minor'];
   const [selectImportance, setSelectImportance] = useState('All');
 
   return (
     <div>
-      {resultData && (
+      {resultData.length > 0 && (
         <DataWrap>
           <ResultWrap>
             <ChartData />
@@ -66,7 +88,7 @@ export default function DataResult() {
           <div>
             <p>이슈 내용</p>
             <ul>
-              {issueData.map(
+              {issueData[selectSheet]?.map(
                 (v, i) =>
                   i > 0 &&
                   selectResult == v[7] && (

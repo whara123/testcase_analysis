@@ -9,7 +9,6 @@ export function createData(data) {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'tcData/CREATE': {
-      console.log();
       return { data: [...state.data, action.data.data] };
     }
     default:
