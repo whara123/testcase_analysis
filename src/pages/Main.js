@@ -89,7 +89,7 @@ export default function Main() {
   return (
     <MainWrap>
       <PageTitle>TestCase 결과 분석기</PageTitle>
-      <input type="file" onChange={handleUpload} />
+      <input type="file" onChange={handleUpload} accept=".xlsx" />
       <DataResult />
     </MainWrap>
   );
